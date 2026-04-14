@@ -32,9 +32,13 @@ class SayPlatformBase {
 
     this.child = childProcess.spawn(command, args, options)
 
-    this.child.stdin.setEncoding('ascii')
-    this.child.stderr.setEncoding('ascii')
-
+    try
+    {
+      this.child.stdin.setEncoding('ascii')
+      this.child.stderr.setEncoding('ascii')
+    }
+    catch(ex){}
+    
     if (pipedData) {
       this.child.stdin.end(pipedData)
     }
